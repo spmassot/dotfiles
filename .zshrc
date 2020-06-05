@@ -82,8 +82,8 @@ fi
 export PATH="$PATH:$HOME/go/src/github.com/namely/platformctl/main.go"
 export GOPATH="$HOME/go"
 export PLATFORM=~/Repos/platform
-export HOMEBREW_GITHUB_API_TOKEN=1b26eef17202bba9807e2811e96a45096a8aceaa
-export GITHUB_TOKEN=1b26eef17202bba9807e2811e96a45096a8aceaa
+export HOMEBREW_GITHUB_API_TOKEN=
+export GITHUB_TOKEN=
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$HOME/.local/bin:$PATH:$HOME/.rvm/bin"
 
