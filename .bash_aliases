@@ -19,6 +19,8 @@ alias gb='git branch'
 alias add='git add'
 alias commit='git commit -m'
 alias gpo='git push origin $(git_current_branch)'
+alias gcn='sh ~/.clone_namely_repo.sh'
+alias gsm='git submodule update --init'
 
 # grpc_cli
 # alias grpc_cli='docker run -v `pwd`:/defs --rm -it namely/grpc-cli'
@@ -33,3 +35,5 @@ alias venv='source venv/bin/activate'
 
 # for fun
 alias datnot='dotnet'
+alias xlnt='python /Users/seanmassot/Documents/excellent.py'
+alias humil='python /Users/seanmassot/Documents/humiliation.py'

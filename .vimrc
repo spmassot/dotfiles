@@ -1,21 +1,27 @@
-"vim-plug ----------------------------------------------------------------------
-call plug#begin()
+call plug#begin() "vim-plug ------------------------------------------------------------------------
 
+Plug 'w0rp/ale'
 Plug '/user/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'ludovicchabant/vim-gutentags'
-" true True false False
+Plug 'integralist/vim-mypy'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
-call plug#end()
-"end vim-plug ------------------------------------------------------------------
+call plug#end() "end vim-plug ----------------------------------------------------------------------
 
 "global/standard stuff
     syntax enable
+    syntax on
     set t_Co=256
-    "colorscheme Tomorrow-Night-Bright
-    colorscheme deus
+
+    "set background=light
+    set background=dark
+	  colorscheme cosmic_latte
+
     filetype plugin indent on
     set number
     set showcmd
@@ -27,15 +33,17 @@ call plug#end()
     set foldmethod=indent
     set foldlevelstart=99
     set wildmenu
-    set cc=101
+    set cc=121
     set backspace=indent,start
     set tags=tags
-	"parenthesis highlighting color
-    highlight MatchParen cterm=bold ctermbg=white ctermfg=none
-	"line number color
-    highlight LineNr ctermfg=lightred
+    set ignorecase
+    set smartcase
+	  "parenthesis highlighting color
+    highlight LineNr ctermfg=black
+    highlight MatchParen cterm=bold ctermbg=black ctermfg=red
     silent! execute "/ $"
     let mapleader=","
+
     " Create window splits easier. The default
     " way is Ctrl-w,v and Ctrl-w,s. I remap
     " this to vv and ss
@@ -47,17 +55,21 @@ call plug#end()
     nnoremap <C-h> <C-w>h
     nnoremap <C-l> <C-w>l
 
+    "security hole
+    set modelines=0
+    set nomodeline
+
+"indentation
+  set tabstop=2
+  set softtabstop=2
+  set shiftwidth=2
+  set expandtab
 
 "language-dependent indentation
   "python
     autocmd FileType python set tabstop=4
     autocmd FileType python set softtabstop=4
     autocmd FileType python set shiftwidth=4
-  "ruby
-    autocmd FileType ruby set tabstop=2
-    autocmd FileType ruby set softtabstop=2
-    autocmd FileType ruby set shiftwidth=2
-    autocmd FileType ruby set expandtab
   "csharp
     autocmd FileType csharp set tabstop=4
     autocmd FileType csharp set softtabstop=4
@@ -67,22 +79,20 @@ call plug#end()
     autocmd FileType go set softtabstop=4
     autocmd FileType go set shiftwidth=4
     autocmd FileType go set noexpandtab
+
+    let g:go_highlight_build_constraints = 1
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_types = 1
+    let g:go_auto_sameids = 1
+    let g:go_addtags_transform = "camelcase"
+
   "elm
     autocmd FileType elm set syntax=elm
-    autocmd FileType elm set tabstop=2
-    autocmd FileType elm set softtabstop=2
-    autocmd FileType elm set shiftwidth=2
-    autocmd FileType elm set expandtab
-  "js
-    autocmd FileType javascript set tabstop=2
-    autocmd FileType javascript set softtabstop=2
-    autocmd FileType javascript set shiftwidth=2
-    autocmd FileType javascript set expandtab
-  "html
-    autocmd FileType html set tabstop=2
-    autocmd FileType html set softtabstop=2
-    autocmd FileType html set shiftwidth=2
-    autocmd FileType html set expandtab
 
 "custom mappings
     "ctrl-d is like dd inside insert mode
@@ -90,6 +100,7 @@ call plug#end()
 
     "ctrl-e jumps to the end of the line while in insert mode
     imap <c-e> <esc>A
+    imap <c-b> <esc>^i
 
     "s inserts a single character from normal mode
     nnoremap s i_<Esc>r
@@ -131,3 +142,9 @@ let NERDTreeIgnore = ['\.pyc$', '^node_modules', '\.log$', 'public\/system',
   \}
   nnoremap <Leader>aj :ALENext<cr>
   nnoremap <Leader>ak :ALEPrevious<cr>
+
+"stuff for govim
+  set nocompatible
+  set nobackup
+  set nowritebackup
+  set noswapfile
